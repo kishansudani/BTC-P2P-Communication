@@ -1,0 +1,41 @@
+{
+  "name": "btc-p2p-communication",
+  "version": "2.0.1",
+  "description": "Communicate on the Bitcoin P2P network with minimal overhead or dependencies",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "ts-node ./tests/index.ts",
+    "build": "tsc",
+    "docs": "typedoc",
+    "prepare": "npm run build && npm run docs"
+  },
+  "author": "Kishan Sudani",
+  "contributors": [
+    "Kishan Sudani"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bsv-minimal": "^2.0.0",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-markdown": "^3.16.0",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "bitcoin",
+    "peer to peer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kishansudani/BTC-P2P-Communication.git"
+  }
+}
