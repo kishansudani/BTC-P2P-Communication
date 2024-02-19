@@ -227,6 +227,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       const version = Version.read(payload);
       this.DEBUG_LOG && console.log(`p2p: version`, version);
       if (!this.disableExtmsg) this.extmsg = version.version >= 70016; // Enable/disable extension messages based on node version
+      console.log(`Node: ${node} VERSION: ${version.version} height: ${version.start_height} \n`);
       this.emitter.emit("version", { version });
       this.emit("version", { ticker, node, port, version });
     } else if (command === "verack") {
