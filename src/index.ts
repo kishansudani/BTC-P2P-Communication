@@ -158,9 +158,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     this.socket.write(serialized);
     this.DEBUG_LOG &&
       console.log(
-        `p2p: Sent message ${command} ${
-          payload ? payload.length : "0"
-        } bytes`
+        `p2p: Sent message ${command} ${payload ? payload.length : "0"} bytes`
       );
   }
 
@@ -221,8 +219,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       this.emit("pong", { ticker, node, port, nonce });
     } else if (command === "headers") {
       const { headers, txs } = Headers.parseHeaders(payload);
-      this.DEBUG_LOG &&
-        console.log(`p2p: Received ${headers.length} headers`);
+      this.DEBUG_LOG && console.log(`p2p: Received ${headers.length} headers`);
       this.emitter.emit("headers", headers);
       this.emit(`headers`, { ticker, node, port, headers, txs });
     } else if (command === "version") {
@@ -267,9 +264,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
           }
         } catch (err: any) {
           this.DEBUG_LOG &&
-            console.error(
-              `p2p: fetchMempoolTxs threw error: ${err.message}`
-            );
+            console.error(`p2p: fetchMempoolTxs threw error: ${err.message}`);
         }
       }
       if (listenBlocks && blocks.length > 0) {
@@ -289,9 +284,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
           }
         } catch (err: any) {
           this.DEBUG_LOG &&
-            console.error(
-              `p2p: fetchNewBlocks threw error: ${err.message}`
-            );
+            console.error(`p2p: fetchNewBlocks threw error: ${err.message}`);
         }
       }
     } else if (command === "block") {
@@ -401,8 +394,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
           reject(Error(`disconnected (error)`));
         });
         socket.on("end", () => {
-          this.DEBUG_LOG &&
-            console.warn(`p2p: Socket disconnected ${node}`);
+          this.DEBUG_LOG && console.warn(`p2p: Socket disconnected ${node}`);
           this.disconnect(this.autoReconnect);
           clearTimeout(timeout);
           reject(Error(`disconnected (end)`));
